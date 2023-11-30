@@ -72,16 +72,15 @@ end
 describe Array do
   context 'when updating an implicit subject' do
     # remove the 'x' before running this test
-    it 'is not empty' do
+    it 'is empty' do
       # Write a test to expect the subject to be empty.
-      # Changed test after next section so test does not permanently fail
-      expect(subject).not_to be_empty
+      expect(subject).to be_empty
     end
 
     # remove the 'x' before running this test
-    subject{ [1] }
     it 'updates length to 1' do
       # Update the implicit subject to make this test pass.
+      subject << 1
       expect(subject.length).to eq(1)
     end
   end
