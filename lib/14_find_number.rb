@@ -11,4 +11,8 @@ class FindNumber
     @answer = answer.value
     @guess = guess
   end
+
+  def make_guess(min = @min, max = @max)
+    ((min + max)/2).floor
+  end
 end
