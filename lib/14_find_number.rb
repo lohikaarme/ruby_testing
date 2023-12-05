@@ -15,4 +15,8 @@ class FindNumber
   def make_guess(min = @min, max = @max)
     ((min + max)/2).floor
   end
+
+  def game_over?
+    return true if @guess == @answer
+  end
 end

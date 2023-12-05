@@ -169,6 +169,8 @@ describe FindNumber do
   # ASSIGNMENT: METHOD #2
   describe '#game_over?' do
     context 'when guess and random_number are equal' do
+      let(:end_solution) { double('random_number', value: 3)}
+      subject(:game_over) { described_class.new(0, 9, end_solution, 3)}
       # Create another subject and random_number double with meaningful names.
       # The subject will need to specify the number value of @guess.
 
@@ -178,7 +180,8 @@ describe FindNumber do
       # the random_number double's value above. Remember that this test will not
       # be able to pass yet because you haven't written the method!
 
-      xit 'is game over' do
+      it 'is game over' do
+        expect(game_over).to be_game_over
       end
     end
 
@@ -189,7 +192,10 @@ describe FindNumber do
     # NOT equal the random_number double's value above.
 
     context 'when guess and random_number are not equal' do
-      xit 'is not game over' do
+      let(:incorrect_guess) { double('random_number', value: 6) }
+      subject(:wrong_solution) { described_class.new(0, 9, incorrect_guess, 5) }
+      it 'is not game over' do
+        expect(wrong_solution).to_not be_game_over
       end
     end
   end
