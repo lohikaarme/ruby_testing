@@ -169,8 +169,8 @@ describe FindNumber do
   # ASSIGNMENT: METHOD #2
   describe '#game_over?' do
     context 'when guess and random_number are equal' do
-      let(:end_solution) { double('random_number', value: 3)}
-      subject(:game_over) { described_class.new(0, 9, end_solution, 3)}
+      let(:end_solution) { double('random_number', value: 3) }
+      subject(:game_over) { described_class.new(0, 9, end_solution, 3) }
       # Create another subject and random_number double with meaningful names.
       # The subject will need to specify the number value of @guess.
 
@@ -264,10 +264,38 @@ describe FindNumber do
     # Write a test for any 'edge cases' that you can think of, for example:
 
     context 'when the guess is 7, min=5, and max=8' do
-      xit 'updates min to the same value as max' do
+      subject(:edge_case_one) { described_class.new(5, 8, number_range, 7) }
+
+      before do
+        edge_case_one.update_range
       end
 
-      xit 'does not update max' do
+      it 'updates min to the same value as max' do
+        minimum = edge_case_one.min
+        expect(minimum).to eq(8)
+      end
+
+      it 'does not update max' do
+        maximum = edge_case_one.max
+        expect(maximum).to eq(8)
+      end
+    end
+
+    context 'when the guess matches the answer' do
+      subject(:edge_case_two) { described_class.new(0, 9, number_range, 8) }
+
+      before do
+        edge_case_two.update_range
+      end
+
+      it 'does not update min' do
+        minimum = edge_case_two.min
+        expect(minimum).to eq(0)
+      end
+
+      it 'does not update max' do
+        maximum = edge_case_two.max
+        expect(maximum).to eq(9)
       end
     end
   end
