@@ -44,7 +44,9 @@ describe CaesarBreaker do
     # Located inside #decrypt (Public Script Method)
 
     # Method with Outgoing Command -> Test that a message is sent
-    xit 'sends translate 26 times' do
+    it 'sends translate 26 times' do
+      expect(translator).to receive(:translate).exactly(26).times
+      phrase.create_decrypted_messages
     end
   end
 
@@ -79,13 +81,19 @@ describe CaesarBreaker do
       # ASSIGNMENT #2
       # Write the following 3 tests:
 
-      xit 'sends message to check the existance of the 16_cipher directory' do
+      it 'sends message to check the existence of the 16_cipher directory' do
+        expect(Dir). to receive(:exist?).with('16_cipher').once
+        phrase.save_decrypted_messages
       end
 
-      xit 'sends message to create a directory' do
+      it 'sends message to create a directory' do
+        expect(Dir).to receive(:mkdir).once
+        phrase.save_decrypted_messages
       end
 
-      xit 'sends message to create a file' do
+      it 'sends message to create a file' do
+        expect(File).to receive(:open).once
+        phrase.save_decrypted_messages
       end
     end
 
@@ -97,7 +105,7 @@ describe CaesarBreaker do
       before do
       end
 
-      xit 'sends message to check the existance of the 16_cipher directory' do
+      xit 'sends message to check the existence of the 16_cipher directory' do
       end
 
       xit 'does not send message to create a directory' do
